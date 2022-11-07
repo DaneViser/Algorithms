@@ -1,4 +1,4 @@
-package youtube_tutoriali;
+package youtube_tutoriali.graphs;
 
 import java.util.*;
 
