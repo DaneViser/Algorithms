@@ -25,7 +25,7 @@ public class Solution {
     }
 
     static boolean isIsomorphic(String s, String t) {
-        Map m = new HashMap();
+        Map<java.io.Serializable, Integer> m = new HashMap<java.io.Serializable, Integer>();
         for (Integer i = 0; i < s.length(); ++i)
             if (m.put(s.charAt(i), i) != m.put(t.charAt(i) + "", i)) return false;
         return true;
@@ -222,6 +222,19 @@ public class Solution {
 
         return start;
     }
+    // I added memo for speed !
+    static Map<Long, Long> hmap = new HashMap<>();
+    static Long j = 1L;
+    static Long fib(long n) {
+        if (n == 0) { return 0L;}
+        if (n == 1) { return 1L;}
+        if(hmap.containsKey(n)) return hmap.get(n);
+
+        Long res = fib(n - 1) + fib(n - 2);
+        hmap.put(n,res);
+        return res;
+
+    }
 
 
     public boolean isValid(TreeNode root, long min, long max) {
@@ -237,7 +250,7 @@ public class Solution {
 
 
     public static void main(String[] args) {
-
+        System.out.println(fib(130L));
     }
 }
 
