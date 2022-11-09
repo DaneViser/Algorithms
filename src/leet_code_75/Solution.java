@@ -223,18 +223,6 @@ public class Solution {
         return start;
     }
     // I added memo for speed !
-    static Map<Long, Long> hmap = new HashMap<>();
-    static Long j = 1L;
-    static Long fib(long n) {
-        if (n == 0) { return 0L;}
-        if (n == 1) { return 1L;}
-        if(hmap.containsKey(n)) return hmap.get(n);
-
-        Long res = fib(n - 1) + fib(n - 2);
-        hmap.put(n,res);
-        return res;
-
-    }
 
 
     public boolean isValid(TreeNode root, long min, long max) {
@@ -248,9 +236,27 @@ public class Solution {
         return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
+    static Map<Long, Long> hmap = new HashMap<>();
+    static Long j = 1L;
+
+    static Long fib(long n) {
+        if (n == 0) {
+            return 0L;
+        }
+        if (n == 1) {
+            return 1L;
+        }
+        if (hmap.containsKey(n)) return hmap.get(n);
+
+        Long res = fib(n - 1) + fib(n - 2);
+        hmap.put(n, res);
+        return res;
+
+    }
+
 
     public static void main(String[] args) {
-        System.out.println(fib(130L));
+        System.out.println(fib(13L));
     }
 }
 
