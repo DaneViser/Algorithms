@@ -256,6 +256,7 @@ public class Solution {
 
 
     public static void main(String[] args) {
+        // Check from laptop
         System.out.println(fib(13L));
     }
 }
