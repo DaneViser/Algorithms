@@ -2,6 +2,7 @@ package leet_code_75;
 
 import java.util.*;
 
+
 public class Solution {
 
     static int[] runningSum(int[] nums) {
@@ -18,7 +19,6 @@ public class Solution {
             totalSum += ele;
 
         for (int i = 0; i < nums.length; leftsum += nums[i++])
-
             if (leftsum * 2 == totalSum - nums[i])
                 return i;
         return -1;
@@ -222,7 +222,6 @@ public class Solution {
 
         return start;
     }
-    // I added memo for speed !
 
 
     public boolean isValid(TreeNode root, long min, long max) {
@@ -236,6 +235,7 @@ public class Solution {
         return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
+    // I added memo for speed !
     static Map<Long, Long> hmap = new HashMap<>();
     static Long j = 1L;
 
@@ -252,6 +252,36 @@ public class Solution {
         hmap.put(n, res);
         return res;
 
+    }
+
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int[] dRow = {-1, 0, 1, 0};
+        int[] dCol = {0, 1, 0, -1};
+
+        Queue<Pair<Integer, Integer>> queue = new PriorityQueue<>();
+        queue.add(new Pair<>(sr, sc));
+
+        int startColor = image[sr][sc];
+        if (startColor == color) return image;
+        image[sr][sc] = color;
+        while (!queue.isEmpty()) {
+            Pair<Integer, Integer> cell = queue.peek();
+            int r = cell.getFirst();
+            int c = cell.getSecond();
+            queue.remove();
+            for (int i = 0; i < 4; i++) {
+                int adjx = r + dRow[i];
+                int adjy = c + dCol[i];
+                // Check for in bounds and start color
+                // NOTE: We don't need visited list, since we check if the color is equal to the starting color. If its not then its visited already.
+                if (adjx >= 0 && adjy >= 0 && adjx < image.length && adjy < image[0].length && image[adjx][adjy] == startColor ) {
+                    image[adjx][adjy] = color;
+                    queue.add(new Pair<>(adjx, adjy));
+                }
+            }
+
+        }
+        return image;
     }
 
 
