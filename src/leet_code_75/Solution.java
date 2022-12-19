@@ -140,14 +140,12 @@ public class Solution {
     // N-ary Tree Preorder Traversal
     static List<Integer> preorder(Node root) {
         List<Integer> output = new ArrayList<Integer>();
+        Stack<Node> st = new Stack<>();
 
         if (root == null) return output;
 
-        Stack<Node> st = new Stack<>();
         st.push(root);
-
         while (!st.isEmpty()) {
-
             Node node = st.pop();
             output.add(node.val);
 
@@ -167,9 +165,9 @@ public class Solution {
 
         queue.offer(root);
         while (!queue.isEmpty()) {
-            int levelNum = queue.size();
+            int nodeNum = queue.size();
             List<Integer> subList = new LinkedList<Integer>();
-            for (int i = 0; i < levelNum; i++) {
+            for (int i = 0; i < nodeNum; i++) {
                 if (queue.peek().left != null) queue.offer(queue.peek().left);
                 if (queue.peek().right != null) queue.offer(queue.peek().right);
                 subList.add(queue.poll().val);
