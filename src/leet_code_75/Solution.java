@@ -30,6 +30,7 @@ public class Solution {
             if (m.put(s.charAt(i), i) != m.put(t.charAt(i) + "", i)) return false;
         return true;
     }
+
     // Is Subsequence
     static boolean isSubsequence(String s, String t) {
         if (s.length() == 0) return true;
